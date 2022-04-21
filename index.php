@@ -4,7 +4,7 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -42,11 +42,17 @@
   </div>
 </nav>
   
-<div class="container">
+<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>...</p>
+  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+</div>
+
+<!-- <div class="container">
   <h3>Collapsible Navbar</h3>
   <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
   <p>Only when the button is clicked, the navigation bar will be displayed.</p>
-</div>
+</div> -->
 
 </body>
 </html>
