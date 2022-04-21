@@ -1,35 +1,46 @@
+<?php include_once('inc/conn.php');?>
+
+
 <?php
-if (isset($_POST['submit'])){
-  //declaring variable assign empy validation
-  $firstName="";
-  $lastName="";
-  $email="";
-  $password="";
+    if (isset($_POST['submit'])){
+      //declaring variable assign empy validation
+      $firstName="";
+      $lastName="";
+      $email="";
+      $password="";
+    
 
-  $firstName=input_veryfy($_POST['firstName']);
-  $lastName=input_veryfy($_POST['lastName']);
-  $email=input_veryfy($_POST['email']);
-  $password=input_veryfy($_POST['password']);
+      $firstName=input_veryfy($_POST['firstName']);
+      $lastName=input_veryfy($_POST['lastName']);
+      $email=input_veryfy($_POST['email']);
+      $password=input_veryfy($_POST['password']);
 
-  echo $firstName;
-  echo"<br>";
-  echo $lastName;
-  echo"<br>";
-  echo $email;
-  echo"<br>";
-  echo $password;
-  echo"<br>";
-}
+      $query ="INSERT INTO tbl_user(firstName,lastName,email,pwd,regDT) values(
+        '{$firstName}','{$lastName}','{$email}','{$password}',NOW() )";
+   
+       
+      $result = mysqli_query($conn,$query);
+          if ($result) {
+            echo "user registration ok" ;
+          } else {
+            echo mysqli_error($conn);
+          }
+          
+  }
 
-function input_veryfy($data){
-  //remove empty stapce from user input
-  $data=trim($data);
-  //remove backslashes from user input
-  $data=stripslashes($data);
-  //convert special chrs to into html entities
-  $data=htmlspecialchars($data);
 
-}
+
+        function input_veryfy($data){
+          //remove empty space from user input
+          $data=trim($data);
+          //remove backslashes from user input
+          $data=stripslashes($data);
+          //convert special chrs to into html entities
+          $data=htmlspecialchars($data);
+
+          return $data;
+
+        }
 
 ?>
 <!DOCTYPE html>
@@ -105,7 +116,7 @@ function input_veryfy($data){
           <small id="helpId" class="text-muted">Enter your Password</small>
         </div>
       <div>
-        <button type="submit" name="submit" id="submit" class="btn btn-primary">SignUp</button>
+        <button type="submit" name="submit"  class="btn btn-primary">SignUp</button>
       </div>
 
 </form>
