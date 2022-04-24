@@ -8,6 +8,7 @@
       $lastName="";
       $email="";
       $password="";
+      $msg="";
     
 
       $firstName=input_veryfy($_POST['firstName']);
@@ -15,16 +16,38 @@
       $email=input_veryfy($_POST['email']);
       $password=input_veryfy($_POST['password']);
 
-      $query ="INSERT INTO tbl_user(firstName,lastName,email,pwd,regDT) values(
-        '{$firstName}','{$lastName}','{$email}','{$password}',NOW() )";
-   
+      $query1 ="SELECT * FROM tbl_user WHERE firstName= '{$firstName}' AND email='{$email}'";
+      $showResult = mysqli_query ($conn,$query1);
+      
+      if ($showResult) {
+
+        if (mysqli_num_rows($showResult)==1){
+
+          $msg = " <div class='alert alert-denger alert-dismissible '>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Sorry!</strong> user already registerd.
+            </div>";
+          
+        }
+        else {
+          $query ="INSERT INTO tbl_user(firstName,lastName,email,pwd,regDT) values(
+            '{$firstName}','{$lastName}','{$email}','{$password}',NOW() )";
        
-      $result = mysqli_query($conn,$query);
-          if ($result) {
-            echo "user registration ok" ;
-          } else {
-            echo mysqli_error($conn);
-          }
+           
+          $result = mysqli_query($conn,$query);
+              if ($result) {
+               // echo "user registration ok" ;
+                $msg = " <div class='alert alert-success alert-dismissible '>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Success!</strong> This alert box could indicate a successful or positive action.
+            
+              </div>";
+              
+              } else {
+                echo mysqli_error($conn);
+              }
+        }
+      }
           
   }
 
@@ -67,7 +90,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="index.php">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -95,6 +118,8 @@
 
 
 <form action= "sign_up.php" method= "POST" autocomplete="off">
+  <?php if(!empty($msg)){echo $msg;}?>
+
         <div class="form-group">
           <label for="">First Name</label>
           <input type="text" name="firstName" id="firstName" class="form-control" placeholder="" aria-describedby="helpId">

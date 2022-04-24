@@ -48,6 +48,12 @@
   <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
 </div>
 
+
+<div class="alert alert-info alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
+  </div>
+
 <!-- <div class="container">
   <h3>Collapsible Navbar</h3>
   <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
