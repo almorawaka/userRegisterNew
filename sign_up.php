@@ -78,6 +78,10 @@
 </head>
 <body>
 
+
+
+
+
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
@@ -111,11 +115,14 @@
 </nav>
   
 <div class="container">
-  <h3>Collapsible Navbar</h3>
-  <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-  <p>Only when the button is clicked, the navigation bar will be displayed.</p>
-</div>
+        <div class="row">
+            <div class="col-md-12">
 
+                <div class="card mt-4">
+                    <div class="card-header" id="card-header">
+                    <h4>Sign Up Form</h4>
+                    </div>
+            <div class="card-body" id="card-body">
 
 <form action= "sign_up.php" method= "POST" autocomplete="off">
   <?php if(!empty($msg)){echo $msg;}?>
@@ -140,11 +147,22 @@
           <input type="text" name="password" id="password" class="form-control" placeholder="" aria-describedby="helpId">
           <small id="helpId" class="text-muted">Enter your Password</small>
         </div>
-      <div>
-        <button type="submit" name="submit"  class="btn btn-primary">SignUp</button>
-      </div>
+        </div>
+                    <div class="card-footer" id="card-footer">
+                        <button type="submit" name="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 
 </form>
+
+
+
 
 </body>
 </html>

@@ -1,10 +1,78 @@
+<?php include_once('inc/conn.php');?>
+
+
+<?php
+    if (isset($_POST['submit'])){
+      //declaring variable assign empy validation
+      $firstName="";
+      $lastName="";
+      $email="";
+      $password="";
+      $msg="";
+    
+
+      $firstName=input_veryfy($_POST['firstName']);
+      $lastName=input_veryfy($_POST['lastName']);
+      $email=input_veryfy($_POST['email']);
+      $password=input_veryfy($_POST['password']);
+
+      $query1 ="SELECT * FROM tbl_user WHERE firstName= '{$firstName}' AND email='{$email}'";
+      $showResult = mysqli_query ($conn,$query1);
+      
+      if ($showResult) {
+
+        if (mysqli_num_rows($showResult)==1){
+
+          $msg = " <div class='alert alert-denger alert-dismissible '>
+            <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+            <strong>Sorry!</strong> user already registerd.
+            </div>";
+          
+        }
+        else {
+          $query ="INSERT INTO tbl_user(firstName,lastName,email,pwd,regDT) values(
+            '{$firstName}','{$lastName}','{$email}','{$password}',NOW() )";
+       
+           
+          $result = mysqli_query($conn,$query);
+              if ($result) {
+               // echo "user registration ok" ;
+                $msg = " <div class='alert alert-success alert-dismissible '>
+                <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
+                <strong>Success!</strong> This alert box could indicate a successful or positive action.
+            
+              </div>";
+              
+              } else {
+                echo mysqli_error($conn);
+              }
+        }
+      }
+          
+  }
+
+
+
+        function input_veryfy($data){
+          //remove empty space from user input
+          $data=trim($data);
+          //remove backslashes from user input
+          $data=stripslashes($data);
+          //convert special chrs to into html entities
+          $data=htmlspecialchars($data);
+
+          return $data;
+
+        }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
@@ -22,7 +90,7 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
+        <li class="active"><a href="index.php">Home</a></li>
         <li class="dropdown">
           <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -35,30 +103,25 @@
         <li><a href="#">Page 3</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost/userRegister/sign_up.php"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="http://localhost/userRegister/sign_up.php  "><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
         <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
       </ul>
     </div>
   </div>
 </nav>
   
-<div class="jumbotron">
-  <h1>Hello, world!</h1>
-  <p>...</p>
-  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-</div>
+<div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron mt-4">
+                    <h4 id="jumbo-header">Welcome!</h4>
+                    <h4 id="jumbo-emoji">👾👨‍💻👾</h4>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-<div class="alert alert-info alert-dismissible">
-    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-    <strong>Info!</strong> This alert box could indicate a neutral informative change or action.
-  </div>
-
-<!-- <div class="container">
-  <h3>Collapsible Navbar</h3>
-  <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-  <p>Only when the button is clicked, the navigation bar will be displayed.</p>
-</div> -->
 
 </body>
 </html>
