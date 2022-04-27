@@ -1,6 +1,5 @@
 <?php include_once('inc/conn.php');?>
 
-
 <?php
     if (isset($_POST['submit'])){
       //declaring variable assign empy validation
@@ -23,7 +22,7 @@
 
         if (mysqli_num_rows($showResult)==1){
 
-          $msg = " <div class='alert alert-denger alert-dismissible '>
+          $msg = " <div class='alert alert-danger alert-dismissible '>
             <a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>
             <strong>Sorry!</strong> user already registerd.
             </div>";
@@ -79,40 +78,9 @@
 <body>
 
 
+<?php include_once('inc/navbar.php')?>
 
 
-
-<nav class="navbar navbar-inverse">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>                        
-      </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
-        <li class="active"><a href="index.php">Home</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Page 1-1</a></li>
-            <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
-          </ul>
-        </li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="http://localhost/userRegister/sign_up.php  "><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
   
 <div class="container">
         <div class="row">
@@ -124,8 +92,8 @@
                     </div>
             <div class="card-body" id="card-body">
 
-<form action= "sign_up.php" method= "POST" autocomplete="off">
-  <?php if(!empty($msg)){echo $msg;}?>
+            <form action= "sign_up.php" method= "POST" autocomplete="off">
+              <?php if(!empty($msg)){echo $msg;}?>
 
         <div class="form-group">
           <label for="">First Name</label>
