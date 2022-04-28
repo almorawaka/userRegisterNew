@@ -6,7 +6,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#">WebSiteName</a>
+      <a class="navbar-brand" href="#">Hospital User Registration System</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
@@ -16,11 +16,17 @@
           <ul class="dropdown-menu">
             <li><a href="#">Page 1-1</a></li>
             <li><a href="#">Page 1-2</a></li>
-            <li><a href="#">Page 1-3</a></li>
+            <li><a href='#'>Page 1-3</a></li>
           </ul>
         </li>
-        <li><a href="#">Page 2</a></li>
-        <li><a href="#">Page 3</a></li>
+        
+        <?php
+            if (isset($_SESSION['User_firstName'])) {
+              echo " <li><a href='#'> PRINT JOB CARD</a></li>";
+              echo " <li><a href='#'> OPEN JOB CARD</a></li> ";
+            } else {  
+            }
+         ?>        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <!-- <li><a href="sign_up.php  "><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>

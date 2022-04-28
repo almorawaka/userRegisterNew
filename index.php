@@ -32,11 +32,11 @@
           
         }
         else {
-          $query ="INSERT INTO tbl_user(firstName,lastName,email,pwd,regDT) values(
+              $query ="INSERT INTO tbl_user(firstName,lastName,email,pwd,regDT) values(
             '{$firstName}','{$lastName}','{$email}','{$password}',NOW() )";
        
            
-          $result = mysqli_query($conn,$query);
+              $result = mysqli_query($conn,$query);
               if ($result) {
                // echo "user registration ok" ;
                 $msg = " <div class='alert alert-success alert-dismissible '>
@@ -52,8 +52,6 @@
       }
           
   }
-
-
 
         function input_veryfy($data){
           //remove empty space from user input
@@ -82,16 +80,14 @@
 
 <?php include_once('inc/navbar.php')?>
 
-<?php 
+<!-- check user session is started -->
+<!-- <?php 
 if (isset($_SESSION['User_firstName'])) {
 echo $_SESSION['User_firstName'];
 } else {
 echo "session not created";
 }
-
-
-
-?>
+?> -->
 
 
   
@@ -99,8 +95,17 @@ echo "session not created";
         <div class="row">
             <div class="col-md-12">
                 <div class="jumbotron mt-4">
-                    <h4 id="jumbo-header">Welcome!</h4>
-                    <h4 id="jumbo-emoji">👾👨‍💻👾</h4>
+                    <h4 id="jumbo-header"> Welcome  
+                      <!-- php code for login user's name  -->
+                      <?php 
+                      if (isset($_SESSION['User_firstName'])) {
+                      echo "  back  ";
+                      echo $_SESSION['User_firstName'];
+                      } else {
+                       echo " Please log into your accout to proceed";
+                      }
+                      ?>
+                    </h4>
                 </div>
             </div>
         </div>

@@ -1,6 +1,5 @@
 <?php session_start(); ?>
 
-
 <?php include_once('inc/conn.php');?>
 
 <?php
@@ -46,7 +45,7 @@
 
     }
 
-
+// funtion to modify the input data 
     function input_varify($data){
         //Remove empty spece from user input
         $data = trim($data);
@@ -54,7 +53,6 @@
         $data  = stripslashes($data);
         //conver special chars to html entities
         $data = htmlspecialchars($data);
-
         return $data;
     }
 
